@@ -84,19 +84,19 @@ In conclusion, the Innovative E-Sports Tournament Management System aims to prov
 
 > Registration Page:
 
-![st1](Images/Register User.jpeg)
+![registration_page](Images/Register User.jpeg)
 
 > Individual User Page:
 
-![st2](Images/Individual User Page.jpeg)
+![individual_user_page](Images/Individual User Page.jpeg)
 
 > Team User Page:
 
-![st3](Images/Team User.jpeg)
+![team_user_page(Images/Team User.jpeg)
 
 > Organizer Page:
 
-![st4](Images/Organiser User Page.jpeg)
+![organizer_page](Images/Organiser User Page.jpeg)
 
 **7. Work Distribution:**
 
