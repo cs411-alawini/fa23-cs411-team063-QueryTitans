@@ -1,11 +1,12 @@
-﻿**PROJECT PROPOSAL REPORT**
+﻿# **PROJECT PROPOSAL REPORT**
 
 
-**1. Title and Project Summary**
+## **1. Title and Project Summary**
 
-**Project Title:** Innovative E-sports Tournament Management System
+### **Project Title:** 
+#### Innovative E-sports Tournament Management System
 
-**Project Summary:**
+### **Project Summary:**
 
 The Innovative E-sports Tournament Management System is a comprehensive online platform designed to revolutionize the organization and participation experience in e-sports tournaments. Our project is a multifaceted web application that bridges the gap between gamers' interests and e-sports tournaments. It consists of two primary components: a tournament registration system, and a game recommendation engine.
 
@@ -20,7 +21,7 @@ The second component of our project is a game recommendation engine that leverag
 E-Sports Era aspires to be the go-to destination for gamers seeking personalized game recommendations and effortless tournament registration. By combining the power of data-driven game suggestions and a user-friendly e-sports tournament system, our project aims to enhance the gaming experience, connect gaming communities, and foster competitive gaming excellence.
 
 
-**2. Detailed Description of Application**
+## **2. Detailed Description of Application**
 
 **2.1 Introduction**
 
@@ -41,7 +42,7 @@ The proposed web application, titled "E-Sports Era," is designed to serve as a c
 \- *Gaming Recommendations*: Aspiring gamers would be able to leverage the platform by receiving recommendations for games based on their current laptop device.
 
 
-**3. Detailed Usefulness Description of Application**
+## **3. Detailed Usefulness Description of Application**
 
 E-Sports Era offers a unique blend of features that differentiates it from existing e-sports tournament platforms. While similar websites and applications exist, our platform stands out with gamification elements. These innovations create a more engaging and immersive e-sports experience. E-Sports Era aims to be a one-stop destination for e-sports enthusiasts and organizers, offering convenience, community-building, and competitive excellence.
 
@@ -53,14 +54,15 @@ A summary of benefits to the platform can be seen below:
 
 \- *Community Building*: The platform fosters a sense of community, driving brand loyalty and attracting sponsors.
 
-**4. Detailed Realness Description of Your Application**
+
+## **4. Detailed Realness Description of Your Application**
 
 The primary source of data for E-Sports Era is the steamDB.info dataset provided by the TA’s. This dataset contains a comprehensive collection of information about various video games available on the Steam platform. It includes attributes such as game titles, genres, user reviews, developer and publisher information, pricing details, and system requirements. This dataset serves as the foundation for offering a diverse selection of e-sports tournaments based on specific game titles and genres. The platform will adhere to industry regulations and ethical guidelines regarding fair competition and responsible gaming.
 
 Apart from this, for training purposes, random test data is to be generated and used for the purpose of testing the Scheduling capabilities of the application.
 
 
-**5. Detailed Functionality Description of Your Application**
+## **5. Detailed Functionality Description of Your Application**
 
 E-Sports Era offers a rich experience for both organizers and participants. Organizers can create and manage tournaments, schedule matches, and have a comprehensive overview of the entire tournament proceedings. The process begins with an organizer creating an account using the 'Organizer Role,' granting them access to create tournaments and view data of participating teams or individuals (based on the type of tournament). Once the organizer's set number of tournament slots is filled, the application will automatically generate a schedule, ensuring a seamless experience for users.
 
@@ -71,7 +73,7 @@ These three account types describe the various roles created in the database, pr
 In conclusion, the Innovative E-Sports Tournament Management System aims to provide a unique and invaluable experience for e-sports enthusiasts and tournament organizers. With innovative features, real-world applicability, and a strong focus on user engagement and security, this project has the potential to reshape the e-sports landscape.
 
 
-**6. UI-Mockup**
+## **6. UI-Mockup**
 
 > Login Page
 
@@ -94,7 +96,7 @@ In conclusion, the Innovative E-Sports Tournament Management System aims to prov
 ![organizer_page](Images/Organiser%20User%20Page.jpeg)
 
 
-**7. Work Distribution:**
+## **7. Work Distribution:**
 
 The objective of our team is to ensure that every member gets the opportunity to work in every aspect of the project. However, the below overview represents team members who will be taking leads on particular aspects of the project.
 
