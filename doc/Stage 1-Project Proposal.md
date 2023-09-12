@@ -92,7 +92,7 @@ In conclusion, the Innovative E-Sports Tournament Management System aims to prov
 
 > Team User Page:
 
-![team_user_page(Images/Team%20User.jpeg)
+![team_user_page](Images/Team%20User.jpeg)
 
 > Organizer Page:
 
