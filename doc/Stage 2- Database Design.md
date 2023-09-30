@@ -2,7 +2,7 @@
 
 ## UML Diagram
 
-![UML_diagram](images/UML.png)
+![UML_diagram](Images/UML.png)
 
 ## Entities
 
