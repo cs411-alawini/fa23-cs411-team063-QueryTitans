@@ -23,7 +23,9 @@ This is an entity regarding general user information as well as user authenticat
 9.	User_Type: an enumerate attribute with values `Individual` or `Organizer`. This is to identify whether the user is an `Individual` or an `Organizer`.
 10.	Laptop_id: foreign key to the laptop table; will help in identifying laptop associated to user.
 
+
 This entity is designed according to the assumptions:
+
 1. Every user in this platform will have a unique User_id and cannot be modified, regardless of their identity (Individual or Organizer).
 2. Users can change their password, which is the only allowed update operation for this entity table. 
 3. Once the user entered the User_id and Password, the system will automatically identify the type of the user (Individual or Organizer), and lead the user to the corresponding menu. We suppose that one person can only be either an Individual or an Organizer.
@@ -42,7 +44,11 @@ This is an entity for information of Laptops of the User, with the below mention
 5.	RAM: a varchar attribute to identify RAM of the Laptop
 6.	Graphics: a varchar attribute to identify Graphics Card of the Laptop
 7.	Laptop_Rating: a calculated decimal attribute to give the laptop a rating (to be used for gaming recommendations)
+
+
 Here we make the following assumptions:
+
+
 1.	A laptop can be associated to only one user. (However, a user can have multiple laptops)
 2.	Laptop_id is a field that is auto generated and not visible to the user, and is not editable.
 3.	User_id is to be associated with Laptop_id automatically while a user sets up account.
@@ -159,11 +165,16 @@ The purpose of this relation is to identify the minimum player per team as per t
 ## Table Transformations and Normalizations
 
 The below mentioned points denote the normalization methods followed between our rendition of our initial to final UML diagram: 
-•	“Number of Teams” in the Scheduler Table was redundantly storing information that other tables were also storing (“game_format” and “number_of_teams”)
-•	The Tournament table was refactored to remove the “Min_Players_Per_Team”. This was redundantly storing this variable in both the Game and Tournament format, which doesn’t comply with 2nd Normal Form. To remedy this, a new table was created with a composite key of “Game_id” and “Tournament_id”
-•	Previously, Team related data was not stored in any table, and limited information was stored in the Tournament table. Though, this was a problem because it led to transitive dependencies which don't comply with 3rd Normal Form. To remedy this, a new table was created just for Team related data. This also removed a 2nd Normal Form violation because previously we had 1 column for each new team (duplication of column is not allowed).
-•	The initial approach was to store team members in the Team Table. Though, this meant each new team member will have a new column with their id stored. This was a duplication of column storage (storing the same attribute in multiple columns). Instead of creating a new table that computes the team to team members, we decided to store the “team_id” in each User’s table.
-•	The Game Description Table contains the main logic of our project. In the initial sketch, we had “Game_Description” and “Game_Rating” in this table along with in the Game Table. This was a problem not only because it was stored twice, but when looking for the right game for a person, we would have to perform multiple joins, which is computationally expensive. To get around this, we instead use the “user_rating” variable which takes into account the game data and greatly simplifies the design. 
+
+1. “Number of Teams” in the Scheduler Table was redundantly storing information that other tables were also storing (“game_format” and “number_of_teams”)
+
+2. The Tournament table was refactored to remove the “Min_Players_Per_Team”. This was redundantly storing this variable in both the Game and Tournament format, which doesn’t comply with 2nd Normal Form. To remedy this, a new table was created with a composite key of “Game_id” and “Tournament_id”
+
+3. Previously, Team related data was not stored in any table, and limited information was stored in the Tournament table. Though, this was a problem because it led to transitive dependencies which don't comply with 3rd Normal Form. To remedy this, a new table was created just for Team related data. This also removed a 2nd Normal Form violation because previously we had 1 column for each new team (duplication of column is not allowed).
+
+4. The initial approach was to store team members in the Team Table. Though, this meant each new team member will have a new column with their id stored. This was a duplication of column storage (storing the same attribute in multiple columns). Instead of creating a new table that computes the team to team members, we decided to store the “team_id” in each User’s table.
+
+5. The Game Description Table contains the main logic of our project. In the initial sketch, we had “Game_Description” and “Game_Rating” in this table along with in the Game Table. This was a problem not only because it was stored twice, but when looking for the right game for a person, we would have to perform multiple joins, which is computationally expensive. To get around this, we instead use the “user_rating” variable which takes into account the game data and greatly simplifies the design. 
 
 ## Relational Schema
 The database design will be converted into 10 tables.
