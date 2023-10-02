@@ -83,11 +83,11 @@ Apart from this, for training purposes, random test data is to be generated and 
 
 
 ## **5. Creativity Description of Your Application**
-The below mentionedprovide a description of the creative component of our proposed application:
+The below mentioned provide a description of the creative component of our proposed application:
 
 1. Integrated Tournament Registration System: Seamlessly combines a game recommendation engine with a tournament registration system, providing users with a unified platform for discovering and participating in esports events related to their favorite games.
 
-2. Personalized Game Recommendations for Laptop Configuration: Offers game suggestions tailored to users' laptop configuration specifications, ensuring that gamers can discover and enjoy titles that run smoothly on their hardware
+2. Personalized Game Recommendations for Laptop Configuration: Offers game suggestions tailored to users' laptop configuration specifications, ensuring that gamers can discover and enjoy titles that run smoothly on their hardware.
 
 ## **6. Detailed Functionality Description of Your Application**
 
