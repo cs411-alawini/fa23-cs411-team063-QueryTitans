@@ -200,7 +200,7 @@ Laptop_id INT
 ```
 Laptop(
     Laptop_Id INT(PK),
-User_Id INT(FK to User.User_id),
+User_Id INT[FK to User.User_id],
 Operating_System VARCHAR(X),
 Processor VARCHAR(X),
 RAM VARCHAR(X),
@@ -213,7 +213,7 @@ Laptop_Rating DECIMAL(3, 2)
 Team(
 Team_id INT(PK), 
 Team_Name VARCHAR(X),
-Tournament_id INT(FK to Tournament.Tournament_id
+Tournament_id INT[FK to Tournament.Tournament_id]
 )
 ```
 **4. Game**
@@ -238,8 +238,8 @@ Game_Rating DECIMAL(3, 2)
 ```
 Tournament (
 Tournament_id INT(PK), 
-Organizer INT(FK to User.User_id), 
-Game_id INT(FK to Game.Game_id),
+Organizer INT[FK to User.User_id], 
+Game_id INT[FK to Game.Game_id],
 Number_of_Teams INT, 
 Format VARCHAR(X),
 Tournament_Schedule DATETIME
@@ -250,7 +250,7 @@ Tournament_Schedule DATETIME
 ```
 Scheduler (
 Schedule_id INT(PK), 
-Tournament_id INT(FK to Tournament.Tournament_id),
+Tournament_id INT[FK to Tournament.Tournament_id],
 Tournament_Format VARCHAR(X)
 )
 ```
@@ -258,8 +258,8 @@ Tournament_Format VARCHAR(X)
 **7. User_Ratings**
 ```
 User_Ratings (
-User_id INT(FK to User.User_id),
-Laptop_id INT(FK to Laptop.Laptop_id),
+User_id INT[FK to User.User_id],
+Laptop_id INT[FK to Laptop.Laptop_id],
 Overall_User_Rating DECIMAL(3, 2)
 )
 ```
@@ -267,24 +267,24 @@ Overall_User_Rating DECIMAL(3, 2)
 **8. Game_Recommendations**
 ```
 Game_Recommendations (
-User_id INT(FK to User.User_id),
+User_id INT[FK to User.User_id],
 Overall_User_Rating DECIMAL(3, 2),
 Preferred_Genre VARCHAR(X), 
-Game_id INT(FK to Game.Game_id)
+Game_id INT[FK to Game.Game_id]
 )
 ```
 **9. Team_to_Member**
 ```
 Team_to_Member (
-Team_id INT(FK to Team.Team_id), 
-User_id INT(FK to User.User_id), 
+Team_id INT[FK to Team.Team_id], 
+User_id INT[FK to User.User_id], 
 Team_Name VARCHAR(X))
 ```
 **10. Min_Player_Per_Team**
 ```
 Min_Player_Per_Team (
-Tournament_id INT(FK to Tournament.Tournament_id), 
-Game_id INT(FK to Game.Game_id), 
+Tournament_id INT[FK to Tournament.Tournament_id], 
+Game_id INT[FK to Game.Game_id], 
 Min_players_per_team INT
 )
 ```
