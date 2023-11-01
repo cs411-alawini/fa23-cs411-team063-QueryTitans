@@ -38,11 +38,15 @@ As per stage submission requirements, the three tables with at least 1000 rows c
 
 ## Advanced Queries
 
+As mentioned above, the focus was to handle the game recommendation part of our project for this stage, hence, the two advanced queries below deal with the same:
+
 ### Query 1
 
 ```sql
 
 ```
+
+The above query is one of our key queries for game recommendations. The query joins the User and Laptop Table in order to get the Laptop Rating for each user, and then performs a join on the Game table based on the User Preferred Category (This field is just a user input on what category of games does the user like). Post this join, there is a comparison between the Game_Rating and the Laptop_Rating which helps us figue out what games can actually run on the User's Laptop. This is followed by a Age Check (in order to ensure that the user is old enough to be able to play that particular game), post which equality operator ensures that the games recommended are to the user preferances. 
 
 
 ### Query 2
@@ -51,7 +55,8 @@ As per stage submission requirements, the three tables with at least 1000 rows c
 
 ```
 
-
+While Query 1 focuses on specific user recommendations, Query 2 is more generic. This query helps us to get the games that have a popularity above the average for their respective categories, hence making them in-demand games in that particular categories.
+This query would be used to display game recommendations based on categories which would basically be used potentially on the home page or when a user is casually scrolling thorugh the website. 
 
 ## Index Analysis
 
