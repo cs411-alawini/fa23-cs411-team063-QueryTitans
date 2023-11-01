@@ -220,18 +220,39 @@ This query would be used to display game recommendations based on categories whi
 
 As per submission requirements, the output for the query, limited to 15 rows can be seen below:
 
-![Advanced Query 1](Images/Count_User.jpg)
+![Advanced Query 2](Images/Count_User.jpg)
 
 ## Index Analysis
 
 ### Query 1
 
 Default Index:
+![DI Query 1](Images/Default_IndexQ1.jpg)
+
+#### First Index
+We added an index on User.Preferred_Genre by using:
+![DI Query 1](Images/1st_IndexQ1.png)
+
+The results achieved by using this index can be seen below:
+![DI Query 1](Images/1st_IndexExplainQ1.jpg)
 
 
-```sql
+#### Second Index
 
-```
+We added an index on Game.Genre by using:
+![DI Query 1](Images/2nd_IndexQ1.jpg)
+
+The results achieved by using this index can be seen below:
+![DI Query 1](Images/2nd_IndexExplainQ1.jpg)
+
+
+#### Third Index
+We added an index on Game.Genre by using:
+
+![DI Query 1](Images/3rd_IndexQ1.jpg)
+
+The results achieved by using this index can be seen below:
+![DI Query 1](Images/3rd_IndexExplainQ1.jpg)
 
 ### Query 2
 
