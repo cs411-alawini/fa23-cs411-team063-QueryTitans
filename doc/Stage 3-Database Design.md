@@ -24,6 +24,10 @@ The list of implemented tables can be seen below:
 
 
 
+
+
+
+
 As per stage submission requirements, the three tables with at least 1000 rows can be seen below:
 
 
@@ -35,6 +39,11 @@ As per stage submission requirements, the three tables with at least 1000 rows c
 ```sql
 
 ```
+
+We do feel the need to provided explaination for some of the attributes defined; mainly the Laptop and Game Ratings.
+It can be seen that Laptop & Game Ratings are calculated in a similar manner. We have tried to utilize weighted averages assinged to the 3 more important aspects to run a game, that is, Processor Speed, RAM and GPU.
+Using these ratings with a calculated normalization factor, we are able to standardise the Ratings both for Game as well as Laptop ( multiplication done by 5 to get a rating scale of 1-5).
+The normalization factor is calculated using the maximum possible values of the above mentioned attributes using the weighted values. 
 
 ## Advanced Queries
 
