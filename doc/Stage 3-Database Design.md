@@ -10,19 +10,16 @@ The system is planned to be hosted on the Google Cloud Platform.
 Based on the same, a connection was established and a project was ceated accordingly. For the project we decide to create a DB named `esports`.
 Connection to GCP and the Esports DB are highlighted below:
 
-
-1(Insert Image)
+![GCP Connection](Images/GCP_Connection.jpg)
 
 
 As the focus was on game recommendation aspect of the project, the majority of the tables created were related to entities that would be involved in the same, these entities were the User, the User's Laptop and the Games.
+
 Apart from this, we also started working on the match scheduling portion of the system by implementing the tables pertaining to user teams.
 
 The list of implemented tables can be seen below:
 
-
-2(Insert Image)
-
-
+![Implemented Tables](Images/Implemented_Tables.jpg)
 
 
 
@@ -30,8 +27,18 @@ The list of implemented tables can be seen below:
 
 As per stage submission requirements, the three tables with at least 1000 rows can be seen below:
 
+The first table with over 1000 rows is Game table which is collected from the Steam dataset (proided by TA's)
 
-3(Insert Image)
+![Game Table Count](Images/Count_Game.jpg)
+
+The second table with over 1000 rows is Laptop table which is obtained using data from various datasets on Laptops.
+
+![Laptop Table Count](Images/Count_Laptop.jpg)
+
+
+The third table with over 1000 rows is the User table which consists of essential information like `User Preferred Category`,`User Preferred Genre`, `Laptop Id` for the user. This information plays a crucial role in providing accurate recommendations!
+
+![User Table Count](Images/Count_User.jpg)
 
 
 ## DDL Commands
@@ -41,8 +48,11 @@ As per stage submission requirements, the three tables with at least 1000 rows c
 ```
 
 We do feel the need to provided explaination for some of the attributes defined; mainly the Laptop and Game Ratings.
+
 It can be seen that Laptop & Game Ratings are calculated in a similar manner. We have tried to utilize weighted averages assinged to the 3 more important aspects to run a game, that is, Processor Speed, RAM and GPU.
+
 Using these ratings with a calculated normalization factor, we are able to standardise the Ratings both for Game as well as Laptop ( multiplication done by 5 to get a rating scale of 1-5).
+
 The normalization factor is calculated using the maximum possible values of the above mentioned attributes using the weighted values. 
 
 ## Advanced Queries
