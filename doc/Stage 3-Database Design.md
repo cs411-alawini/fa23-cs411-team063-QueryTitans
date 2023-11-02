@@ -187,7 +187,7 @@ The above query is one of our key queries for game recommendations. The query jo
 
 As per submission requirements, the output for the query, limited to 15 rows can be seen below:
 
-![Advanced Query 1](Images/Count_User.jpg)
+![Advanced Query 1](Images/AD1.jpg)
 
 ### Query 2
 
@@ -220,7 +220,7 @@ This query would be used to display game recommendations based on categories whi
 
 As per submission requirements, the output for the query, limited to 15 rows can be seen below:
 
-![Advanced Query 2](Images/Count_User.jpg)
+![Advanced Query 2](Images/AD2.jpg)
 
 ## Index Analysis
 
@@ -338,3 +338,7 @@ We decided to use this column as an index due to the reason that a composite ind
 The results achieved by using this index can be seen below:
 
 ![DI Query 2](Images/3rd_IndexExplainQ2.jpg)
+
+To summarize the reults from the picture above:
+
+Usinga composite index on `Game.Category` and `Game.Popularity` did bring improvements in the query performance. The sort operation became more efficient, reducing the time to 5.998-6.155 ms. The nested loop inner join also experienced a significant speed-up, taking just 1.011-4.648 ms. The filter operation checking `G1.Popularity > G2.Avg_Popularity` was streamlined to 0.001 ms. The group aggregate operation that computes the average popularity benefitted from the composite index, as evidenced by the index scan using `game_category_popularity`, reducing its time to 0.030-0.967 ms. All in All, the composite index enhanced the performance of sorting, joining, and aggregating operations, resulting in an overall boost in query efficiency.
