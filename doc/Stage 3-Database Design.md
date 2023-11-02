@@ -228,8 +228,9 @@ As per submission requirements, the output for the query, limited to 15 rows can
 
 Default Index:
 ![DI Query 1](Images/Default_IndexQ1.jpg)
+![DI Query 1](Images/1st_IndexQ1-2.jpg)
 
-To summarize the reults from the picture above:
+To summarize the reults from the pictures above:
 
 The query is fairly complex, involving multiple joins and a subquery. The overall query took around 82.827 ms to complete, with sorting by Game.Popularity taking the most time (77.895–82.827 ms). The use of nested loop inner join and hash join shows the query planner's attempt to optimize table scans. The filter conditions also contribute to execution time, taking up to 23.768 ms in one instance. Despite the temporary table with deduplication and the subsequent sorting operation, the performance could potentially be improved by indexing critical columns and re-evaluating join conditions.
 
@@ -240,7 +241,7 @@ We added an index on User.Preferred_Genre by using:
 
 ![DI Query 1](Images/1st_IndexQ1.png)
 
-We decided to use this column as an index due to the reson that this column is used in the join condition between the User and Game tables, specifically `User.Preferred_Genre = Game.Genre`. Indexing this column can make the join operation faster by allowing the database engine to quickly locate the rows that satisfy this condition. 
+We decided to use this column as an index due to the reason that this column is used in the join condition between the User and Game tables, specifically `User.Preferred_Genre = Game.Genre`. Indexing this column can make the join operation faster by allowing the database engine to quickly locate the rows that satisfy this condition. 
 
 The results achieved by using this index can be seen below:
 
@@ -268,11 +269,11 @@ The index on Game.Genre  negatively impacted the query's performance compared to
 That said, the index lookup on Game using game_genre streamlined the process of finding relevant rows in the Game table, reducing the actual time per loop to a range of 0.003-0.337 ms. However, this improvement is insufficient to counterbalance the performance loss in other parts of the query
 
 #### Third Index
-We added an index on Game.Genre by using:
+We added an index on Game.Rating by using:
 
 ![DI Query 1](Images/3rd_IndexQ1.jpg)
 
-We decided to use this column as an index due to the reson that this column is involved in multiple places in the query, most notably in the subquery condition `WHERE Game.Game_Rating < Laptop.Laptop_Rating` and the main query filter `AND Game.Game_Rating <= Laptop.Laptop_Rating`. Indexing this column can optimize these filtering steps, potentially reducing both the time and the cost associated with the query
+We decided to use this column as an index due to the reason that this column is involved in multiple places in the query, most notably in the subquery condition `WHERE Game.Game_Rating < Laptop.Laptop_Rating` and the main query filter `AND Game.Game_Rating <= Laptop.Laptop_Rating`. Indexing this column can optimize these filtering steps, potentially reducing both the time and the cost associated with the query
 
 The results achieved by using this index can be seen below:
 
@@ -287,10 +288,53 @@ Interestingly, the filtering conditions have also become more time-consuming; sp
 So, based on these indexes implemented for the Advanced Query 1, we can understand that there is still some options that we can explore, given that single key indexing is not the solution, next attempts would be to try composite keys in combinations, as having two or more keys in the index should in theory ( for this particular scenario) be able to improve the performance.
 
 ### Query 2
-
 Default Index:
 
+![DI Query 2](Images/Default_IndexQ2.jpg)
 
-```sql
+To summarize the reults from the picture above:
 
-```
+The query is used for finding games whose popularity is above the average popularity in their respective categories. The explain analyze shows an actual sort time of 6.858 ms and a temporary table scan time of 6.324 ms. The cost for the table scan is relatively low at 410.34. The inner hash join took 4.976 ms, which is efficient considering it deals with two tables, G1 and G2 (even though it is actually dealing with itself) . It's worth noting that the filter, which enforces the condition that G1's popularity must be higher than the average popularity in G2, executed in 5.373 ms. Overall, the query performs well, with reasonable execution times and costs, based on which it can be safe to say that it is suitable for this type of data retrieval.
+
+#### First Index
+We added an index on Game.Category by using:
+
+![DI Query 2](Images/1st_IndexQ2.jpg)
+
+We decided to use this column as an index due to the reason that this column is involved in a JOIN operation on the Game table based on the Category, meaning that an index on this column can significantly improve the JOIN performance. It should also speed up the GROUP BY operation, thereby improving the speed of the subquery that calculates Avg_Popularity.
+
+The results achieved by using this index can be seen below:
+
+![DI Query 2](Images/1st_IndexExplainQ2.jpg)
+
+To summarize the reults from the picture above:
+
+The index on Game.Category improved the query's performance in several aspects. It made the nested loop inner join more efficient with a reduced actual time of 3.668-7.307 ms and a cost of 17255.68. The index also helped in more efficient group aggregation and reduced the actual time for table scans, but the cost metrics were still high. Overall, the index was beneficial for join operations and group aggregates but less so for sorting.
+
+#### Second Index
+
+We added an index on Game.Popularity by using:
+
+![DI Query 2](Images/2nd_IndexQ2.jpg)
+
+We decided to use this column as an index due to the reason that the query applies a filter condition that compares the popularity of each game against the average popularity within the same category. Having an index on thiscolumn can make this filter operation faster ( in theory).
+
+The results achieved by using this index can be seen below:
+
+![DI Query 2](Images/1st_IndexExplainQ2.jpg)
+
+To summarize the reults from the picture above:
+
+This index reduced the time taken for the nested loop inner join to 1.533-5.881 ms. The table scan times on G1 also showed improvement. The filter operation for checking if `G1.Popularity > G2.Avg_Popularity` became extremely fast, taking only 0.001 ms. This indicates that the index effectively facilitated the filter condition based on popularity. However, the overall cost metrics remained high and the sorting time was slightly reduced to 7.417-7.568 ms. In summary, the index  had a substantial impact on join and filter operations but only a modest effect on sorting.
+
+#### Third Index
+
+We added an index on both Game.Category and Game.Popularity by using:
+
+![DI Query 2](Images/3rd_IndexQ2.jpg)
+
+We decided to use this column as an index due to the reason that a composite index on these two columns can offer the benefits of both individual indexes and potentially more. It would be particularly effective for this query, as both Category and Popularity are used in the JOIN and WHERE clauses. This will reduce the number of database pages that need to be scanned, improving the performance even further.  
+
+The results achieved by using this index can be seen below:
+
+![DI Query 2](Images/3rd_IndexExplainQ2.jpg)
