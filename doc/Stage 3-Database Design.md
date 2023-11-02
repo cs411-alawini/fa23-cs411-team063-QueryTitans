@@ -323,7 +323,7 @@ The results achieved by using this index can be seen below:
 
 ![DI Query 2](Images/1st_IndexExplainQ2.jpg)
 
-To summarize the reults from the picture above:
+To summarize the results from the picture above:
 
 This index reduced the time taken for the nested loop inner join to 1.533-5.881 ms. The table scan times on G1 also showed improvement. The filter operation for checking if `G1.Popularity > G2.Avg_Popularity` became extremely fast, taking only 0.001 ms. This indicates that the index effectively facilitated the filter condition based on popularity. However, the overall cost metrics remained high and the sorting time was slightly reduced to 7.417-7.568 ms. In summary, the index  had a substantial impact on join and filter operations but only a modest effect on sorting.
 
