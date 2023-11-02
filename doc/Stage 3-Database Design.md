@@ -229,30 +229,62 @@ As per submission requirements, the output for the query, limited to 15 rows can
 Default Index:
 ![DI Query 1](Images/Default_IndexQ1.jpg)
 
+To summarize the reults from the picture above:
+
+The query is fairly complex, involving multiple joins and a subquery. The overall query took around 82.827 ms to complete, with sorting by Game.Popularity taking the most time (77.895–82.827 ms). The use of nested loop inner join and hash join shows the query planner's attempt to optimize table scans. The filter conditions also contribute to execution time, taking up to 23.768 ms in one instance. Despite the temporary table with deduplication and the subsequent sorting operation, the performance could potentially be improved by indexing critical columns and re-evaluating join conditions.
+
+
+
 #### First Index
 We added an index on User.Preferred_Genre by using:
+
 ![DI Query 1](Images/1st_IndexQ1.png)
 
+We decided to use this column as an index due to the reson that this column is used in the join condition between the User and Game tables, specifically `User.Preferred_Genre = Game.Genre`. Indexing this column can make the join operation faster by allowing the database engine to quickly locate the rows that satisfy this condition. 
+
 The results achieved by using this index can be seen below:
+
 ![DI Query 1](Images/1st_IndexExplainQ1.jpg)
 
+The findings for this index were quite interesting. The index on `User.Preferred_Genre`  the query's execution time rather than decreasing it. Specifically, the overall actual time has risen to around 391.251 ms, a significant increase from the previous 82.827 ms. The nested loop inner join's actual time increased to 346.130 ms, up from 41.125 ms, with a much higher estimated cost of 40493.77. 
+
+However, the index lookup on `User` using `user_preferred_genre` improved index scan efficiency, reducing the actual time to 0.064-0.092 ms per loop, but this was not enough to offset the increased costs elsewhere.
+Interestingly, the temporary table with deduplication still took around 374.627 ms. This suggests that while the index might have optimized a small part of the query, it ended up increasing the overall cost and time.
 
 #### Second Index
 
 We added an index on Game.Genre by using:
+
 ![DI Query 1](Images/2nd_IndexQ1.jpg)
 
+
+We decided to use this column as an index due to its presence in the main join, as was for the above First index as well. Indexing this column can make the join operation faster by allowing the database engine to quickly locate the rows that satisfy this condition.
+
 The results achieved by using this index can be seen below:
+
 ![DI Query 1](Images/2nd_IndexExplainQ1.jpg)
 
+The index on Game.Genre  negatively impacted the query's performance compared to the original plan using primary indexing. The actual time required for the sort operation has increased to 461.821 ms from the initial 82.827 ms. Moreover, the nested loop inner join's actual time rose to 415.812 ms, up from 41.125 ms in the primary indexing scenario, with a higher estimated cost of 40528.30.
+That said, the index lookup on Game using game_genre streamlined the process of finding relevant rows in the Game table, reducing the actual time per loop to a range of 0.003-0.337 ms. However, this improvement is insufficient to counterbalance the performance loss in other parts of the query
 
 #### Third Index
 We added an index on Game.Genre by using:
 
 ![DI Query 1](Images/3rd_IndexQ1.jpg)
 
+We decided to use this column as an index due to the reson that this column is involved in multiple places in the query, most notably in the subquery condition `WHERE Game.Game_Rating < Laptop.Laptop_Rating` and the main query filter `AND Game.Game_Rating <= Laptop.Laptop_Rating`. Indexing this column can optimize these filtering steps, potentially reducing both the time and the cost associated with the query
+
 The results achieved by using this index can be seen below:
+
 ![DI Query 1](Images/3rd_IndexExplainQ1.jpg)
+
+It can be seen that the Game.Game_Rating has had a negative impact on the query's performance. The actual time required for sorting has increased  to 1200.246 ms from the initial 82.827 ms with primary indexing. The actual time required for the nested loop inner join has also soared to 1152.609 ms, up from 41.125 ms.
+
+The cost associated with the table scan on the temporary table is particularly high, at 71687.91, which reflects in the actual time of 1184.350 ms. This is a considerable increase when compared to both primary indexing and other secondary indexings, suggesting that this index is not effective for the current query.
+
+Interestingly, the filtering conditions have also become more time-consuming; specifically, the filter taking 0.324-1.101 ms for each of the 1000 loops through the Game table. This is noticeably more than with primary indexing or the other secondary indexings.
+
+So, based on these indexes implemented for the Advanced Query 1, we can understand that there is still some options that we can explore, given that single key indexing is not the solution, next attempts would be to try composite keys in combinations, as having two or more keys in the index should in theory ( for this particular scenario) be able to improve the performance.
 
 ### Query 2
 
