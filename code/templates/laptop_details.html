@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Laptop Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <a href="/">Home</a>
+        <form method="POST" action="/update_laptop_details">
+            <div class="form-group">
+                <label for="selected_laptop">Select Laptop:</label>
+                <select class="form-control" id="selected_laptop" name="selected_laptop">
+                    {% for laptop in laptop_options %}
+                        <option value="{{ loop.index }}"> {{ laptop }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Details</button>
+        </form>
+    </div>
+</body>
+
+</html>
+

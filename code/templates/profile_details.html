@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Details Update</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <a href="/">Home</a>
+        <h1>User Details</h1>
+        <form method="POST" action="/update_profile_details">
+            <div class="form-group">
+                <label for="profile_name">Profile Name</label>
+                <input type="text" class="form-control" id="profile_name" name="profile_name" value="{{ user['profile_name'] }}">
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="text" class="form-control" id="date" name="date" value="{{ user['date'] }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user['email'] }}">
+            </div>
+            <div class="form-group">
+                <label for="preferred_genre">Preferred Genre</label>
+                <input type="text" class="form-control" id="preferred_genre" name="preferred_genre" value="{{ user['preferred_genre'] }}">
+            </div>
+            <div class="form-group">
+                <label for="preferred_category">Preferred Category</label>
+                <input type="text" class="form-control" id="preferred_category" name="preferred_category" value="{{ user['preferred_category'] }}">
+            </div>
+            <div class="form-group">
+                <label for="current_laptop">Current Laptop</label>
+                <input type="text" class="form-control" id="current_laptop" name="current_laptop" value="{{ user['current_laptop'] }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Details</button>
+        </form>
+    </div>
+</body>
+
+</html>

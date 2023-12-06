@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Recommendation System</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/search-results" method="GET">
+            <h2>Search</h2>
+            <input type="text" placeholder="Search..." name="search_query" class="form-control mb-3">
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+
+        <br>
+        
+        <!-- Games in Next 30 mins -->
+        <h2>On-Going Games</h2>
+        <div class="row justify-content-center">
+
+            {% for match in live_matches %}
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ match.name }}</h5>
+                            <p class="card-text">Team 1: {{match.team_1}}</p>
+                            <p class="card-text">Team 2: {{match.team_2}}</p>
+                            <p class="card-text">Match Status: {{match.status}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <br>
+        <hr/>
+
+        <!-- Profile Details -->
+        <h2>Profile Details</h2>
+        <p>Profile Name: {{ profile_details.profile_name }}</p>
+        <p>Age: {{ profile_details.age }}</p>
+        <p>Email: {{profile_details.email }} </p>
+        <p>Preferred_Genre: {{profile_details.genre}} </p>
+        <p>Preferred_Category: {{profile_details.category}} </p>
+        <p>Laptop: {{profile_details.laptop}} </p>
+        <a class="btn btn-primary" href="/update_profile_details">Change User Details</a>
+        <a class="btn btn-primary" href="/update_laptop_details">Change Laptop Details</a>
+        <a class="btn btn-primary" href="/delete_laptop_from_user_profile">Delete Laptop</a>
+        <br>
+        <br>
+        <a class="btn btn-secondary" href="/register_for_match">Register For Match</a>
+        <a class="btn btn-secondary" href="/team_signup">Team Sign Up</a>
+        <a class="btn btn-secondary" href="/add_user_to_existing_team">Add User to Existing Team</a>
+
+        <br>
+        <hr/>
+        
+        <!-- Game Recommendations -->
+        <h2>Game Recommendations Based On User Laptop</h2>
+        <div class="row justify-content-center">
+            {% for game in game_recommendations %}                            
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ game.title }}</h5>
+                        <p class="card-text">Genre: {{game.genre}}</p>
+                        <p class="card-text">Price: ${{game.price}}</p>
+                        <p class="card-text">Category: {{game.category}}</p>
+                    </div>
+                </div>
+            </div>  
+            {% endfor %}
+        </div>
+        
+        <br>
+        <hr/>
+
+        <br>
+        <hr/>
+        
+        <!-- Game Recommendations -->
+        <h2>Game Recommendations Based on Popularity</h2>
+        <div class="row justify-content-center">
+            {% for game in game_recommendations_pop %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ game.title }}</h5>
+                        <p class="card-text">Genre: {{game.genre}}</p>
+                        <p class="card-text">Price: ${{game.price}}</p>
+                        <p class="card-text">Popularity: {{game.popularity}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <br>
+        <hr/>
+
