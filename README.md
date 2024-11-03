@@ -1,20 +1,191 @@
-### **Project Title:** 
-#### Innovative E-sports Tournament Management System
+<div align="center">
+<h1>Innovative E-sports Tournament Management System 🎮</h1>
 
-### **Project Summary:**
-
-The Innovative E-sports Tournament Management System is a comprehensive online platform designed to revolutionize the organization and participation experience in e-sports tournaments. Our project is a multifaceted web application that bridges the gap between gamers' interests and e-sports tournaments. It consists of two primary components: a tournament registration system, and a game recommendation engine.
-
-**Part 1: Tournament Registration System**
-
-The first component empowers users to seamlessly register for e-sports tournaments related to their favorite games. Whether they're casual gamers or competitive e-sports enthusiasts, users can access a wide array of tournaments catering to different game titles and genres. The system will provide detailed tournament information, including dates, formats, and entry requirements. Participants can conveniently register for tournaments that align with their gaming interests and skill levels. Furthermore, our platform will facilitate tournament management for organizers, streamlining the process from tournament creation to match scheduling.
-
-**Part 2: Game Recommendation Engine**
-
-The second component of our project is a game recommendation engine that leverages the rich dataset - ‘steamDB.info’ to suggest games to users based on their preferences and the criteria associated with each game. Users will provide input on their gaming interests, such as preferred genres, gameplay styles, and platform preferences. The recommendation engine will then analyze the dataset to offer personalized game suggestions that align with the user's gaming profile. By harnessing the comprehensive data from SteamDB.info, our system will ensure that users discover games that truly resonate with their gaming preferences.
-
-E-Sports Era aspires to be the go-to destination for gamers seeking personalized game recommendations and effortless tournament registration. By combining the power of data-driven game suggestions and a user-friendly e-sports tournament system, our project aims to enhance the gaming experience, connect gaming communities, and foster competitive gaming excellence.
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
 
 
-2. Tournament Registration System:
-Battlefy, Toornament, and Challonge are some comparable platforms for E-sports tournament management and registration. Meanwhile, our platform focuses on a wide array of games and genres, catering to a broader audience compared to platforms like Challonge, which primarily focuses on user-generated tournaments. The emphasis on tournament management for organizers sets our system apart, making it a valuable tool for event organizers in the esports community.
+*A comprehensive platform for e-sports tournament management and game recommendations*
+</div>
+
+# 📑 Table of Contents
+- [Project Overview](#-project-overview)
+- [Key Features](#-key-features)
+- [System Architecture](#-system-architecture)
+- [Technical Implementation](#-technical-implementation)
+
+# 🎯 Project Overview
+
+The Innovative E-sports Tournament Management System is a comprehensive online platform designed to revolutionize the organization and participation experience in e-sports tournaments. Our system combines tournament management capabilities with intelligent game recommendations, creating a unique ecosystem for gamers and organizers.
+
+## Core Components
+
+### 1. Tournament Registration System
+- Seamless registration process for e-sports tournaments
+- Comprehensive tournament information management
+- Support for multiple game titles and genres
+- Advanced tournament organization tools
+- Match scheduling and management
+
+### 2. Game Recommendation Engine
+- Powered by steamDB.info dataset
+- Personalized game suggestions based on user preferences
+- Intelligent matching algorithm
+- Platform compatibility analysis
+- Performance requirement verification
+
+# 🌟 Key Features
+
+1. **User-Centric Design**
+   - Individual and Organizer profiles
+   - Personalized gaming preferences
+   - Hardware compatibility checking
+   - Team management capabilities
+
+2. **Tournament Management**
+   - Automated match scheduling
+   - Team registration system
+   - Real-time updates
+   - Multi-game support
+
+3. **Smart Recommendations**
+   - Genre-based game suggestions
+   - Hardware compatibility verification
+   - Age-appropriate recommendations
+   - Popularity metrics integration
+
+# 🏗 System Architecture
+
+## Database Design
+
+### UML Diagram
+![UML_diagram](./doc/Images/stage2-UpdatedUML.jpg)
+
+### Core Entities
+
+1. **User Entity**
+   - Unique user identification
+   - Profile management
+   - Hardware specifications
+   - Gaming preferences
+
+2. **Team Entity**
+   - Team management
+   - Member associations
+   - Tournament participation tracking
+
+3. **Game Entity**
+   - Comprehensive game information
+   - System requirements
+   - Compatibility metrics
+   - Popularity tracking
+
+4. **Match Entity**
+   - Tournament scheduling
+   - Team pairing
+   - Result tracking
+
+5. **Laptop Entity**
+   - Hardware specifications
+   - Performance metrics
+   - Compatibility checking
+
+# 💾 Technical Implementation
+
+## Database Schema
+
+### Entity Relationships
+- **User-Team**: Many-to-Many relationship
+- **Team-Match**: One-to-Many relationship
+- **Game-Match**: One-to-Many relationship
+- **User-Laptop**: One-to-Many relationship
+
+### Normalization
+- Implemented 3NF (Third Normal Form)
+- Optimized for data integrity
+- Reduced redundancy
+- Efficient query performance
+
+## Relational Schema Details
+
+### Core Tables
+```sql
+User(
+    User_id VARCHAR(PK), 
+    First_Name VARCHAR, 
+    Last_Name VARCHAR, 
+    Password VARCHAR,
+    Date_of_Birth DATE, 
+    Age INT, 
+    Email VARCHAR, 
+    Preferred_Genre VARCHAR,
+    User_Type ENUM ('Individual','Organizer')
+)
+
+Game(
+    Game_id VARCHAR(PK),
+    Game_Name VARCHAR,
+    Date_of_Release DATE, 
+    Genre VARCHAR,
+    Required_Age VARCHAR, 
+    Popularity INT,
+    Game_Rating DECIMAL(3, 2)
+)
+
+Team(
+    Team_id VARCHAR(PK), 
+    Team_Name VARCHAR,
+    User_id VARCHAR [FK to User.User_id]
+)
+```
+
+# 🔄 Workflow
+
+1. **User Registration**
+   - Profile creation
+   - Hardware specification input
+   - Preference selection
+
+2. **Tournament Management**
+   - Creation by organizers
+   - Team registration
+   - Match scheduling
+   - Result tracking
+
+3. **Game Recommendations**
+   - User preference analysis
+   - Hardware compatibility check
+   - Personalized suggestions
+
+# 🚀 Future Enhancements
+
+1. **Enhanced Analytics**
+   - Player performance tracking
+   - Tournament statistics
+   - Team rankings
+
+2. **Advanced Matchmaking**
+   - Skill-based pairing
+   - Regional matchmaking
+   - Custom tournament formats
+
+3. **Integration Features**
+   - Stream integration
+   - Social media connectivity
+   - Real-time notifications
+
+# 📋 Requirements
+
+- Modern web browser
+- Stable internet connection
+- Compatible gaming hardware
+- Valid email for registration
+
+# 🤝 Contributing
+
+We welcome contributions to enhance the platform. Please see our contributing guidelines for more information.
+
+---
+
+<div align="center">
+Made with ❤️ for the Gaming Community
+</div>
